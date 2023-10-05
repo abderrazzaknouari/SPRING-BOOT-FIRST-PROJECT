@@ -1,6 +1,9 @@
 package com.test.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.collection.spi.InitializerProducerBuilder;
+import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.util.List;
 @Entity
@@ -12,11 +15,11 @@ public class Employer {
     private long id;
     @Column(name = "name")
     private String name;
-    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn(name = "departementId")
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "departementId")
     private Departement departement;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn(name = "userId")
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
     private User user;
 
     public User getUser() {

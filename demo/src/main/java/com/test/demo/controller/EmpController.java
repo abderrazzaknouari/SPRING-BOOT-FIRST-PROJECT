@@ -20,4 +20,8 @@ public class EmpController {
     public Employer save(@PathVariable Employer employer){
         return emp.save(employer);
     }
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        emp.delete(id);
+    }
 }
